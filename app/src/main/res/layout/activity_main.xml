@@ -27,12 +27,13 @@
 
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
+                    android:id="@+id/btn7"
                     android:text="7"
                     android:textColor="#FFFFFF"
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -41,7 +42,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn8"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -50,16 +52,18 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn9"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
                     android:text="del"
                     android:textColor="#FFFFFF"
-                    android:background="#505050"
+                    android:background="#808080"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btnDel"
+                    android:fontFamily="monospace">
             </Button>
         </LinearLayout>
 
@@ -76,7 +80,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn4"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -85,7 +90,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn5"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -94,16 +100,18 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn6"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
                     android:text="÷"
                     android:textColor="#FFFFFF"
-                    android:background="#505050"
+                    android:background="#808080"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btnDiv"
+                    android:fontFamily="monospace">
             </Button>
 
         </LinearLayout>
@@ -120,7 +128,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn1"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -129,7 +138,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn2"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -138,16 +148,18 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn3"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
                     android:text="-"
                     android:textColor="#FFFFFF"
-                    android:background="#505050"
+                    android:background="#808080"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btnMin"
+                    android:fontFamily="monospace">
             </Button>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
@@ -163,7 +175,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btnDot"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -172,7 +185,8 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btn0"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
@@ -181,16 +195,18 @@
                     android:background="#505050"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btnRes"
+                    android:fontFamily="monospace">
             </Button>
             <Button android:layout_height="match_parent"
                     android:layout_width="0dp"
                     android:text="+"
                     android:textColor="#FFFFFF"
-                    android:background="#505050"
+                    android:background="#808080"
                     android:layout_weight="1"
                     android:textSize="32sp"
-                    android:onClick="onButtonClicked" android:fontFamily="monospace">
+                    android:id="@+id/btnPlus"
+                    android:fontFamily="monospace">
             </Button>
         </LinearLayout>
 
