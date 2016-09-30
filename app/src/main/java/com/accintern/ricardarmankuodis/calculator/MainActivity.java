@@ -1,13 +1,19 @@
 package com.accintern.ricardarmankuodis.calculator;
 
 import android.os.Build;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,10 +30,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean bSet;
     private int operation;
     private boolean refresh;
-    private Operation op;
+    private String op;
+    List<String> logEntries;
+
+    ArrayAdapter<String>  mArrayAdapter;
 
     @BindView(R.id.output)
     TextView mOutputTextView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+//    @BindView(R.id.drawerRecyclerView)
+//    RecyclerView mDrawerRecycler;
+//    LogRecyclerAdapter mAdapter;
+
+    @BindView(R.id.left_drawer)
+    ListView mDrawerListView;
 
     @BindViews({ R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5
             ,R.id.btn6,R.id.btn7,R.id.btn8,R.id.btn9
@@ -48,6 +66,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         ButterKnife.apply(mButtons, SET_LISTENER);
 
+        logEntries=new ArrayList<String>();
+        logEntries.add("test");
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        // Set the adapter for the list view
+        mArrayAdapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, logEntries);
+        mDrawerListView.setAdapter(mArrayAdapter);
+
+//        mAdapter=new LogRecyclerAdapter(logEntries);
+//        mDrawerRecycler.setLayoutManager(new LinearLayoutManager(this));
+////
+//        mDrawerRecycler.setAdapter(mAdapter);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mOutputTextView.setElevation(10);
         }
@@ -65,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /** check if last input charact ir operation sign */
     private boolean isOperation(String input){
-        if(input.equals("+")||input.equals("-")||input.equals("÷")||input.equals("×")||input.equals("=")){
+        if(input.equals("+")||input.equals("-")||input.equals("÷")||input.equals("×")){
             return true;
         }
         return false;
@@ -85,61 +117,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String pressedStr = btn.getText().toString();
 
         if(pressedStr.equals("del")) {
-            a=0; b=0; aSet=false; bSet=false;
+            a=0; b=0; rez=0;
             mOutputTextView.setText("");
             return;
         }
 
         String input = getInputText();
 
-        if(isOperation(pressedStr)){
-            switch(pressedStr){
-                case "+":
-                    Log.d(TAG,"operation = plus");
-                    op=Operation.PLUS;
-                    break;
-                case "-":
-                    Log.d(TAG,"operation = minus");
-                    op=Operation.MINUS;
-            }
+        if(isOperation(pressedStr)) {
+            // get user input
+            a=toInt(input);
 
-            if(!aSet && !input.isEmpty()){
-                a=toInt(input);
-                aSet=true;
-                Log.d(TAG,"a is set to "+a);
-            }else if(!bSet && !input.isEmpty()){
-                b=toInt(input);
-                bSet=true;
-                Log.d(TAG,"b is set to "+b);
-            }
+            // refresh screen for next number
             setOutputText("");
 
-        }else{
-            // digit entered
-            if(refresh){
-                setOutputText(pressedStr);
-                refresh=false;
-            }else
-            setOutputText(getInputText()+pressedStr);
-        }
+            // capture operation
+            op=pressedStr;
 
-        if(pressedStr.equals("=")||(bSet&&aSet)){
-            Log.d(TAG,"a="+a+" b="+b);
-            int rez=a+b;
-            a=0; b=0; aSet=false; bSet=false;
-            mOutputTextView.setText(rez+"");
-            refresh=true;
-            return;
+        }else if(pressedStr.equals("=")){
+            // perform calculation
+            b=toInt(input);
+            String logMsg="";
+            switch(op){
+                case "+":
+                    rez=a+b;
+                    logMsg=a+"+"+b+"="+rez;
+                    break;
+                case "-":
+                    rez=a-b;
+                    logMsg=a+"-"+b+"="+rez;
+                    break;
+            }
+            setOutputText(rez+"");
+            // refresh fields
+            // a=0;
+            b=0; rez=0;
+            // TODO append to log
+            logEntries.add(logMsg);
+            mArrayAdapter.notifyDataSetChanged();
+//            mAdapter.notifyDataSetChanged();
+            Log.d(TAG,logMsg);
+            // TODO maybe replace string with stringbuffer
+        }else{
+            // digit
+            setOutputText(input+pressedStr);
         }
 
     }
 
     private int toInt(String str){
         return Integer.parseInt(str);
-    }
-
-    private enum Operation{
-        PLUS, MINUS;
     }
 
 }
